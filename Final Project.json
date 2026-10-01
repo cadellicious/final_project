@@ -1,0 +1,708 @@
+{
+  "name": "Final Project",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -176,
+        48
+      ],
+      "id": "13b38fc2-b5a0-4cb5-a9de-14cddd6ec929",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qWRGZvtuTvIBFCFp",
+          "name": "Google Gemini(PaLM) Api account - gmail fe"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -16,
+        48
+      ],
+      "id": "c60278b8-2ae4-42d1-af8e-d665ee4a09c8",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ycR9u8gvkLIXIg3J5LNq8KeOLttAVtyaShXgm9o-EWw",
+          "mode": "list",
+          "cachedResultName": "content_planner",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ycR9u8gvkLIXIg3J5LNq8KeOLttAVtyaShXgm9o-EWw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ycR9u8gvkLIXIg3J5LNq8KeOLttAVtyaShXgm9o-EWw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nama_konten": "={{ $json.nama_konten }}",
+            "hook": "={{ $json.judul }}",
+            "poin_utama": "={{ $json.poin_utama }}",
+            "saran_visual": "={{ $json.saran_visual }}",
+            "caption": "={{ $json.caption }}",
+            "hastag": "={{ $json.hashtag }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "nama_konten",
+              "displayName": "nama_konten",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hook",
+              "displayName": "hook",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "poin_utama",
+              "displayName": "poin_utama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "saran_visual",
+              "displayName": "saran_visual",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "caption",
+              "displayName": "caption",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hastag",
+              "displayName": "hastag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        496,
+        0
+      ],
+      "id": "d929b2cc-e0bc-4343-acd1-83d668672f61",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "07pqckB6xzCrNM7r",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 7
+            },
+            {
+              "field": "hours",
+              "hoursInterval": 13
+            },
+            {
+              "field": "hours",
+              "hoursInterval": 19
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -832,
+        256
+      ],
+      "id": "15df7251-e45c-435e-aa4d-75ff2b4a23d8",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -176,
+        416
+      ],
+      "id": "a492145a-c185-46cf-892d-a859a01736a6",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qWRGZvtuTvIBFCFp",
+          "name": "Google Gemini(PaLM) Api account - gmail fe"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Hour }}",
+                    "rightValue": "=7",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "a8935f3c-cd75-4b84-a463-eed868ca86b5"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "1b529900-f905-4fd3-b6cb-0f507f197e6a",
+                    "leftValue": "={{ $json.Hour }}",
+                    "rightValue": "=13",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "502cb264-0b4c-4c84-8ea5-88d169726588",
+                    "leftValue": "={{ $json.Hour }}",
+                    "rightValue": "=19",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -624,
+        240
+      ],
+      "id": "d31cfb7e-cf6a-4ea1-9cf1-868af6c417e1",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -400,
+        -192
+      ],
+      "id": "fc28d8da-c39d-4ad5-8e48-a87d283e6cd9",
+      "name": "Bikin Konten dari Teks",
+      "webhookId": "de82e958-19bb-4b04-af3c-82d705954968",
+      "credentials": {
+        "telegramApi": {
+          "id": "dYJA15wQBO7LCwTd",
+          "name": "Telegram account - test_latihan_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Kamu adalah seorang Senior Content Planner dan Copywriter yang ahli nge-Branding untuk klien brand Es Kopi Kekinian bernama \"Kopi Ah\".\nTarget kamu adalah Gen Z, Milenial, Anak Kantoran, Mahasiswa dan orang-orang yang butuh asupan kafein dengan bahasa yang relatable, asik, dan kekinian.\n\nUser akan memberikan ide atau permintaan konten.\n\nTugas kamu adalah mengembangkan ide tersebut menjadi rencana konten dan mengembalikannya HANYA objek JSON yang valid, TANPA teks pembuka, TANPA penjelasan tambahan, TANPA markdown code block (jangan pakai backtick json).\n\n​ATURAN SANGAT PENTING:\n- ​KAMU WAJIB MENGISI SEMUA 6 KUNCI (KEYS) DI BAWAH INI.\n​Ide dari pengguna:\n{{ $json.message.text }}\n\nSTRUKTUR/SKEMA yang WAJIB diikuti (nama field dan tipe data HARUS persis seperti ini):\n{\n  \"nama_konten\": \"<string>\",\n  \"judul\": \"<string>\",\n  \"poin_utama\": \"<string>\",\n  \"saran_visual\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"hashtag\": \"<string>\",\n}\n\nCONTOH HASIL (ini hanya contoh ilustrasi, JANGAN dijadikan jawaban):\n{\n  \"nama_konten\": \"Lifestyle & Productivity\",\n  \"judul\": \"Lawan Kantuk dengan Secangkir Semangat\",\n  \"poin_utama\": \"Kopi mengandung kafein yang berfungsi sebagai stimulan sistem saraf pusat untuk melawan rasa kantuk dan meningkatkan fokus jangka pendek saat bekerja atau belajar.\",\n  \"saran_visual\": \"Video POV (Point of View) menuangkan kopi ke cangkir dengan sinematografi slow motion, lalu transisi ke layar laptop yang menunjukkan progres pekerjaan yang selesai.\",\n  \"caption\": \"Mata mulai berat tapi deadline masih melambai? 😵‍💫 Jangan dilawan, mending diajak ngopi! Secangkir kopi bukan cuma soal rasa, tapi soal 'tombol reset' buat otak kamu biar balik fokus lagi. Sruput dulu kopinya, lanjutin lagi mimpinya lewat aksi nyata. Coffee is the best teammate! ☕✨\",\n  \"hashtag\": \"#NgopiDulu #CoffeeLover #TipsProduktif #MoodBooster #KopiHitam #SemangatKerja #CoffeeBreak #Ngantuk,\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -176,
+        -192
+      ],
+      "id": "e891a933-98f0-4c1f-9672-6fdcaab1fe4d",
+      "name": "Jadiin Konten Viral"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1bd6384f-3fd8-4cd7-b42b-aa9213ffc433",
+              "name": "nama_konten",
+              "value": "={{ JSON.parse($json.output).nama_konten }}",
+              "type": "string"
+            },
+            {
+              "id": "8ba8dd13-c3c0-4573-ba36-57f670445593",
+              "name": "judul",
+              "value": "={{ JSON.parse($json.output).judul }}",
+              "type": "string"
+            },
+            {
+              "id": "8c0fd473-41cf-4c78-a498-5e6614b6e722",
+              "name": "poin_utama",
+              "value": "={{ JSON.parse($json.output).poin_utama }}",
+              "type": "string"
+            },
+            {
+              "id": "1421b6b1-8944-48f9-8dd7-b072c3c54807",
+              "name": "=saran_visual",
+              "value": "={{ JSON.parse($json.output).saran_visual }}",
+              "type": "string"
+            },
+            {
+              "id": "c70dfaa1-0e0e-49c3-a072-8f55a45fd826",
+              "name": "caption",
+              "value": "={{ JSON.parse($json.output).caption }}",
+              "type": "string"
+            },
+            {
+              "id": "f8a548a2-5ed8-4ea7-8237-52b7b15e02a2",
+              "name": "=hashtag",
+              "value": "={{ JSON.parse($json.output).hashtag }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        192,
+        -192
+      ],
+      "id": "5a6701e6-22d7-4400-adba-95909ded715d",
+      "name": "Mapping Konten"
+    },
+    {
+      "parameters": {
+        "chatId": "=1579532645",
+        "text": "=Halo.. Ada update konten terbaru nih Bro:\n\nTema: {{ $json.nama_konten }}\nJudul: {{ $json.hook }}\n\nsilahkan cek di sheet ya Bro..!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        0
+      ],
+      "id": "dd648c2b-3918-44db-88a6-8fc58d65d36a",
+      "name": "Kasih Report ke User",
+      "webhookId": "e76224fd-c2cc-4629-a6f8-75ec9c3c2784",
+      "credentials": {
+        "telegramApi": {
+          "id": "dYJA15wQBO7LCwTd",
+          "name": "Telegram account - test_latihan_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "456b5764-87df-4f25-9afc-6ba6f1aa7330",
+              "name": "tema_spesifik",
+              "value": "tema pagi motivasi",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -400,
+        64
+      ],
+      "id": "a504d124-f8bd-4729-8f7e-d9f4d0e3816a",
+      "name": "Tema Pagi"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "456b5764-87df-4f25-9afc-6ba6f1aa7330",
+              "name": "tema_spesifik",
+              "value": "tema siang jokes",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -400,
+        256
+      ],
+      "id": "00ee3e70-edce-433d-a61c-20e3ddebb1c1",
+      "name": "Tema Siang"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "456b5764-87df-4f25-9afc-6ba6f1aa7330",
+              "name": "tema_spesifik",
+              "value": "=tema malam lifestyle",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -400,
+        464
+      ],
+      "id": "ac8bbc2c-43a1-4f7b-8ad4-345a68b76538",
+      "name": "Tema Malam"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Kamu adalah seorang Senior Content Planner dan Copywriter yang ahli nge-Branding untuk klien brand Es Kopi Kekinian bernama \"Kopi Ah\".\n\nTugas kamu adalah MEMIKIRKAN SATU IDE KONTEN SECARA ACAK namun sangat relevan untuk klien brand Es Kopi Kekinian bernama \"Kopi Ah\". Gunakan ide yang sangat kreatif dan out-of-the-box!\n\nTarget kamu adalah Gen Z, Milenial, Anak Kantoran, Mahasiswa dan orang-orang yang butuh asupan kafein dengan bahasa yang relatable, asik, dan kekinian.\n\nSetelah kamu memikirkan ide tersebut, kembangkan menjadi rencana konten yang detail dan kembalikan HANYA objek JSON yang valid, TANPA teks pembuka, TANPA penjelasan tambahan, TANPA markdown code block (jangan pakai backtick json).\n\nPERHATIKAN INSTRUKSI TEMA BERIKUT INI:\n{{ $json.tema_spesifik }}\n\n​ATURAN SANGAT PENTING:\n- ​KAMU WAJIB MENGISI SEMUA 6 KUNCI (KEYS) DI BAWAH INI.\nSTRUKTUR/SKEMA yang WAJIB diikuti (nama field dan tipe data HARUS persis seperti ini):\n{\n  \"nama_konten\": \"<string>\",\n  \"judul\": \"<string>\",\n  \"poin_utama\": \"<string>\",\n  \"saran_visual\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"hashtag\": \"<string>\",\n}\n\nCONTOH HASIL (ini hanya contoh ilustrasi, JANGAN dijadikan jawaban):\n{\n  \"nama_konten\": \"Lifestyle & Productivity\",\n  \"judul\": \"Lawan Kantuk dengan Secangkir Semangat\",\n  \"poin_utama\": \"Kopi mengandung kafein yang berfungsi sebagai stimulan sistem saraf pusat untuk melawan rasa kantuk dan meningkatkan fokus jangka pendek saat bekerja atau belajar.\",\n  \"saran_visual\": \"Video POV (Point of View) menuangkan kopi ke cangkir dengan sinematografi slow motion, lalu transisi ke layar laptop yang menunjukkan progres pekerjaan yang selesai.\",\n  \"caption\": \"Mata mulai berat tapi deadline masih melambai? 😵‍💫 Jangan dilawan, mending diajak ngopi! Secangkir kopi bukan cuma soal rasa, tapi soal 'tombol reset' buat otak kamu biar balik fokus lagi. Sruput dulu kopinya, lanjutin lagi mimpinya lewat aksi nyata. Coffee is the best teammate! ☕✨\",\n  \"hashtag\": \"#NgopiDulu #CoffeeLover #TipsProduktif #MoodBooster #KopiHitam #SemangatKerja #CoffeeBreak #Ngantuk,\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -176,
+        256
+      ],
+      "id": "6400924a-f095-48cf-bd74-37b5dd602753",
+      "name": "Jadiin Konten Viral (2)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1bd6384f-3fd8-4cd7-b42b-aa9213ffc433",
+              "name": "nama_konten",
+              "value": "={{ JSON.parse($json.output).nama_konten }}",
+              "type": "string"
+            },
+            {
+              "id": "8ba8dd13-c3c0-4573-ba36-57f670445593",
+              "name": "judul",
+              "value": "={{ JSON.parse($json.output).judul }}",
+              "type": "string"
+            },
+            {
+              "id": "8c0fd473-41cf-4c78-a498-5e6614b6e722",
+              "name": "poin_utama",
+              "value": "={{ JSON.parse($json.output).poin_utama }}",
+              "type": "string"
+            },
+            {
+              "id": "1421b6b1-8944-48f9-8dd7-b072c3c54807",
+              "name": "=saran_visual",
+              "value": "={{ JSON.parse($json.output).saran_visual }}",
+              "type": "string"
+            },
+            {
+              "id": "c70dfaa1-0e0e-49c3-a072-8f55a45fd826",
+              "name": "caption",
+              "value": "={{ JSON.parse($json.output).caption }}",
+              "type": "string"
+            },
+            {
+              "id": "f8a548a2-5ed8-4ea7-8237-52b7b15e02a2",
+              "name": "=hashtag",
+              "value": "={{ JSON.parse($json.output).hashtag }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        192,
+        256
+      ],
+      "id": "ae4cd188-c9be-4b28-9793-b58c87535fc4",
+      "name": "Mapping Konten (2)"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Jadiin Konten Viral",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Jadiin Konten Viral",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Kasih Report ke User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Jadiin Konten Viral (2)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Tema Pagi",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tema Siang",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tema Malam",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bikin Konten dari Teks": {
+      "main": [
+        [
+          {
+            "node": "Jadiin Konten Viral",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jadiin Konten Viral": {
+      "main": [
+        [
+          {
+            "node": "Mapping Konten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapping Konten": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tema Pagi": {
+      "main": [
+        [
+          {
+            "node": "Jadiin Konten Viral (2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tema Siang": {
+      "main": [
+        [
+          {
+            "node": "Jadiin Konten Viral (2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tema Malam": {
+      "main": [
+        [
+          {
+            "node": "Jadiin Konten Viral (2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jadiin Konten Viral (2)": {
+      "main": [
+        [
+          {
+            "node": "Mapping Konten (2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mapping Konten (2)": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b16bee1c-3038-421f-8e38-18bbfca3cb1e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7ea43b809a6ffe92670393275efd1612789c971edecc402ffab3e175c363f16a"
+  },
+  "nodeGroups": [],
+  "id": "gp2q5380kJUYa0Xh",
+  "tags": []
+}
