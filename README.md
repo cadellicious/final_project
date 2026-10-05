@@ -1,6 +1,6 @@
 Final Project - PPKD Jakarta Barat AI Bootcamp (PPKD AIAE x Hacktiv8)
 
-Author: Shergy Diardhan
+Author: Fajrin Efantri
 
 ---
 
