@@ -1,3 +1,6 @@
+Final Project - PPKD Jakarta Barat AI Bootcamp (PPKD AIAE x Hacktiv8)
+Author: Fajrin Efantri
+
 https://fajrinefantri.app.n8n.cloud/workflow/gp2q5380kJUYa0Xh
 
 <img width="729" height="339" alt="image" src="https://github.com/user-attachments/assets/98c38646-ced6-41cb-8214-98704345146f" />
