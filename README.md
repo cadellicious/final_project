@@ -3,30 +3,30 @@ https://fajrinefantri.app.n8n.cloud/workflow/gp2q5380kJUYa0Xh
 <img width="729" height="339" alt="image" src="https://github.com/user-attachments/assets/98c38646-ced6-41cb-8214-98704345146f" />
 
 
-# ☕ Automasi Pembuatan Konten dengan n8n & AI
+# Automasi Pembuatan Konten dengan n8n & AI
 
 Workflow otomatisasi berbasis **n8n** yang berfungsi sebagai "Asisten Content Planner" cerdas untuk *brand* Es Kopi Kekinian Bernama "KOPI AH". Sistem ini menggunakan **Google Gemini AI** untuk melakukan *brainstorming*, menyusun ide konten (hook, caption, visual), mendata hasilnya ke **Google Sheets**, dan mengirimkan laporan real-time via **Telegram Bot**.
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 Sistem ini menggunakan arsitektur **"Split & Merge"** di mana terdapat dua pemicu (Trigger) berbeda yang berujung pada satu eksekusi akhir yang sama:
 
-1. **🤖 On-Demand Mode (Telegram Trigger)**
+1. ** On-Demand Mode (Telegram Trigger)**
    * User dapat memberikan instruksi spesifik kapan saja melalui chat Telegram (contoh: *"Buatkan konten tentang promo kopi gayo"*).
    * AI akan memproses permintaan tersebut secara instan.
-2. **🕒 Autopilot Mode (Schedule Trigger dengan Tema Dinamis)**
+2. ** Autopilot Mode (Schedule Trigger dengan Tema Dinamis)**
    * Berjalan otomatis 3 kali sehari tanpa intervensi manusia.
    * **Pukul 07:00:** Menghasilkan konten bertema *Motivasi Ngantor & Penyemangat Pagi*.
    * **Pukul 13:00:** Menghasilkan konten bertema *Jokes Ngantuk & Butuh Kafein*.
    * **Pukul 19:00:** Menghasilkan konten bertema *Lifestyle Nongkrong & Chill Abis Kerja*.
-3. **📊 Terintegrasi Penuh (Google Sheets & Telegram)**
+3. ** Terintegrasi Penuh (Google Sheets & Telegram)**
    * Output AI distandarisasi secara ketat dalam format JSON.
    * Data diproses dan diinput otomatis ke dalam kolom-kolom Google Sheets.
    * Notifikasi hasil pengerjaan dikirimkan kembali ke grup/chat Telegram tim.
 
 ---
 
-## 🏗️ Arsitektur Workflow
+## Arsitektur Workflow
 
 Workflow dibangun menggunakan pendekatan *Multi-Branching* yang efisien:
 
@@ -36,7 +36,7 @@ Workflow dibangun menggunakan pendekatan *Multi-Branching* yang efisien:
 
 ---
 
-## 📋 Prasyarat Sistem
+## Prasyarat Sistem
 
 Untuk menjalankan atau mereplikasi workflow ini, Anda membutuhkan:
 1. **n8n Instance** (Lokal atau Cloud).
@@ -46,7 +46,7 @@ Untuk menjalankan atau mereplikasi workflow ini, Anda membutuhkan:
 
 ---
 
-## 💻 Struktur Output JSON AI
+## Struktur Output JSON AI
 
 Prompt AI (System Message) telah dikunci secara ketat untuk hanya menghasilkan output JSON yang siap di-*parsing* ke *database*. Berikut adalah skemanya:
 
